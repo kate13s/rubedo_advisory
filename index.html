@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rubedo Advisory — From friction to gold.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* =============================================================
+   Rubedo Advisory — Colors & Type
+   Alchemy of business: burgundy, gold, warm cream.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ----- Brand palette ---------------------------------------- */
+  --rb-burgundy:       #6B1E2E;
+  --rb-gold:           #C9973A;
+  --rb-cream:          #F5F0EA;
+  --rb-charcoal:       #2C2C2C;
+  --rb-sand:           #E8DED0;
+
+  /* ----- Tints / shades --------------------------------------- */
+  --rb-burgundy-900:   #4A1320;
+  --rb-burgundy-800:   #5A1827;
+  --rb-burgundy-700:   #6B1E2E;
+  --rb-burgundy-600:   #82303F;
+  --rb-burgundy-500:   #9B4654;
+  --rb-burgundy-100:   #EFD9DD;
+  --rb-burgundy-50:    #F8ECEF;
+
+  --rb-gold-700:       #A57A26;
+  --rb-gold-600:       #B5882F;
+  --rb-gold-500:       #C9973A;
+  --rb-gold-400:       #D6AD5F;
+  --rb-gold-200:       #ECD49B;
+  --rb-gold-100:       #F4E5C2;
+
+  --rb-cream-100:      #FBF8F4;
+  --rb-cream-200:      #F5F0EA;
+  --rb-cream-300:      #EDE5D9;
+  --rb-sand-200:       #E8DED0;
+  --rb-sand-300:       #D9CCB8;
+
+  --rb-ink:            #2C2C2C;
+  --rb-ink-soft:       #4A4A4A;
+  --rb-ink-mute:       #76706A;
+  --rb-ink-faint:      #A89F94;
+
+  /* ----- Semantic surfaces ------------------------------------ */
+  --bg-page:           var(--rb-cream-200);
+  --bg-page-lift:      var(--rb-cream-100);
+  --bg-section-alt:    var(--rb-sand-200);
+  --bg-card:           #FFFFFF;
+  --bg-card-warm:      var(--rb-cream-100);
+  --bg-inverse:        var(--rb-burgundy);
+  --bg-deep:           #1F1318;
+
+  --fg-1:              var(--rb-ink);
+  --fg-2:              var(--rb-ink-soft);
+  --fg-3:              var(--rb-ink-mute);
+  --fg-faint:          var(--rb-ink-faint);
+  --fg-on-burgundy:    var(--rb-cream);
+  --fg-on-gold:        var(--rb-burgundy);
+
+  --accent:            var(--rb-burgundy);
+  --accent-2:          var(--rb-gold);
+  --accent-soft:       var(--rb-burgundy-50);
+
+  --hairline:          rgba(107, 30, 46, 0.14);
+  --hairline-strong:   rgba(107, 30, 46, 0.28);
+  --hairline-gold:     rgba(201, 151, 58, 0.45);
+
+  /* ----- Type families ---------------------------------------- */
+  --font-display:      'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-serif:        'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-sans:         'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:         ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ----- Type scale ------------------------------------------- */
+  --fs-12:  12px;
+  --fs-14:  14px;
+  --fs-16:  16px;
+  --fs-18:  18px;
+  --fs-20:  20px;
+  --fs-24:  24px;
+  --fs-30:  30px;
+  --fs-38:  38px;
+  --fs-48:  48px;
+  --fs-60:  60px;
+  --fs-76:  76px;
+  --fs-96:  96px;
+
+  --lh-tight:    1.1;
+  --lh-snug:     1.25;
+  --lh-normal:   1.5;
+  --lh-relaxed:  1.65;
+
+  --tracking-tight:    -0.01em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.06em;
+  --tracking-wider:    0.14em;
+  --tracking-caps:     0.22em;
+
+  /* ----- Spacing ---------------------------------------------- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* ----- Radii ------------------------------------------------ */
+  --r-0:   0px;
+  --r-1:   2px;
+  --r-2:   4px;
+  --r-3:   6px;
+  --r-4:   10px;
+  --r-pill: 999px;
+
+  /* ----- Shadows ---------------------------------------------- */
+  --shadow-1: 0 1px 0 rgba(107, 30, 46, 0.06),
+              0 1px 2px rgba(60, 30, 20, 0.04);
+  --shadow-2: 0 1px 0 rgba(107, 30, 46, 0.06),
+              0 8px 24px -12px rgba(60, 30, 20, 0.18);
+  --shadow-3: 0 2px 0 rgba(107, 30, 46, 0.08),
+              0 24px 48px -20px rgba(60, 30, 20, 0.28);
+  --shadow-inset-gold: inset 0 0 0 1px rgba(201, 151, 58, 0.45);
+
+  /* ----- Motion ----------------------------------------------- */
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --dur-3: 380ms;
+  --dur-4: 600ms;
+}
+
+/* ===== Base reset ============================================== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg-page);
+  color: var(--fg-1);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+em { font-style: italic; }
+
+/* ===== Layout ================================================== */
+.rb-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===== Buttons ================================================= */
+.rb-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px; font-weight: 600;
+  padding: 12px 22px;
+  border: 0; border-radius: 6px;
+  cursor: pointer; letter-spacing: .01em;
+  transition: background var(--dur-2) var(--ease-out),
+              transform var(--dur-1) var(--ease-out),
+              box-shadow var(--dur-2) var(--ease-out);
+  white-space: nowrap;
+}
+.rb-btn--primary { background: var(--rb-burgundy); color: var(--rb-cream); }
+.rb-btn--primary:hover { background: var(--rb-burgundy-800); }
+.rb-btn--primary:active { background: var(--rb-burgundy-900); transform: translateY(1px); }
+
+.rb-btn--secondary { background: var(--bg-page); color: var(--rb-burgundy); box-shadow: inset 0 0 0 1px rgba(107,30,46,.4); }
+.rb-btn--secondary:hover { background: var(--rb-burgundy-50); }
+
+.rb-btn--ghost {
+  background: transparent; color: var(--rb-burgundy); padding: 12px 4px;
+  border-radius: 0; position: relative;
+}
+.rb-btn--ghost::after {
+  content: ""; position: absolute; left: 4px; right: 4px; bottom: 8px;
+  height: 1px; background: var(--rb-gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.rb-btn--ghost:hover::after { transform: scaleX(1); }
+
+.rb-btn--inverse { background: var(--rb-cream); color: var(--rb-burgundy); }
+.rb-btn--inverse:hover { background: #fff; }
+
+/* ===== Eyebrow ================================================= */
+.rb-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-12);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--rb-burgundy);
+}
+.rb-eyebrow--gold { color: var(--rb-gold-700); }
+
+/* ===== Header ================================================== */
+.rb-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(245, 240, 234, 0.85);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2);
+  border-bottom: 1px solid transparent;
+}
+.rb-header.is-scrolled {
+  border-bottom-color: var(--hairline);
+  box-shadow: 0 1px 0 rgba(107,30,46,.04);
+}
+.rb-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; gap: 24px;
+}
+.rb-header__brand { display: flex; align-items: center; gap: 12px; }
+.rb-header__wordmark { display: flex; flex-direction: column; line-height: 1; }
+.rb-header__rubedo {
+  font-family: var(--font-display); font-size: 16px;
+  letter-spacing: .22em; color: var(--fg-1); font-weight: 600;
+}
+.rb-header__advisory {
+  font-family: var(--font-display); font-size: 9px;
+  letter-spacing: .3em; color: var(--rb-burgundy); margin-top: 4px;
+}
+.rb-header__nav {
+  display: flex; gap: 32px;
+  font-family: var(--font-sans); font-size: 14px;
+  font-weight: 500; color: var(--fg-2);
+}
+.rb-header__nav a { transition: color var(--dur-2); }
+.rb-header__nav a:hover { color: var(--rb-burgundy); }
+
+/* ===== Hero ==================================================== */
+.rb-hero { position: relative; padding: 96px 0 112px; overflow: hidden; }
+.rb-hero__watermark {
+  position: absolute; top: -40px; right: -120px;
+  width: 560px; height: 560px; pointer-events: none;
+}
+.rb-hero__watermark svg { width: 100%; height: 100%; }
+.rb-hero__inner { position: relative; max-width: 920px; }
+.rb-hero__title {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(44px, 5.6vw, 76px); line-height: 1.08;
+  letter-spacing: -0.015em; color: var(--fg-1);
+  margin: 18px 0 36px; max-width: 14ch;
+}
+.rb-hero__amp { color: var(--rb-gold); font-style: italic; font-weight: 400; padding: 0 4px; }
+.rb-hero__italic { color: var(--rb-burgundy); font-weight: 500; }
+.rb-hero__lede {
+  font-family: var(--font-serif); font-size: 20px; line-height: 1.6;
+  color: var(--fg-2); max-width: 680px; margin: 0 0 36px; text-wrap: pretty;
+}
+.rb-hero__cta { display: flex; gap: 16px; align-items: center; margin-bottom: 56px; flex-wrap: wrap; }
+.rb-hero__meta {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-sans); font-size: 12px;
+  color: var(--fg-3); letter-spacing: .04em;
+}
+.rb-hero__sep { color: var(--rb-gold); }
+
+/* ===== Section base ============================================ */
+.rb-section { padding: 112px 0; position: relative; }
+.rb-section--sand { background: var(--bg-section-alt); }
+.rb-section__head { max-width: 760px; margin-bottom: 56px; }
+.rb-section__title {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 56px); line-height: 1.12;
+  letter-spacing: -.01em; margin: 12px 0 16px; color: var(--fg-1);
+}
+.rb-section__lede {
+  font-family: var(--font-serif); font-size: 18px;
+  line-height: 1.6; color: var(--fg-2); margin: 0;
+}
+
+/* ===== Pain Points ============================================= */
+.rb-pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--hairline);
+  border: 1px solid var(--hairline); border-radius: 8px; overflow: hidden;
+}
+.rb-pain {
+  background: var(--bg-section-alt); padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: background var(--dur-2);
+}
+.rb-pain:hover { background: var(--rb-cream-100); }
+.rb-pain__emoji { font-size: 28px; line-height: 1; }
+.rb-pain__title {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 22px; line-height: 1.25; color: var(--fg-1);
+}
+.rb-pain__body {
+  font-family: var(--font-serif); font-size: 15px;
+  line-height: 1.6; color: var(--fg-2);
+}
+.rb-pain-closer {
+  margin-top: 56px; text-align: center;
+  font-family: var(--font-display); font-size: 28px;
+}
+.rb-pain-closer__line { color: var(--fg-2); margin-right: 12px; font-style: italic; }
+.rb-pain-closer__em { color: var(--rb-burgundy); font-weight: 600; }
+
+/* ===== Services ================================================ */
+.rb-services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.rb-service {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 32px 32px 28px; cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2);
+  position: relative;
+}
+.rb-service:hover { box-shadow: var(--shadow-2); border-color: var(--hairline-strong); }
+.rb-service.is-open {
+  box-shadow: var(--shadow-2), inset 0 0 0 1px rgba(201,151,58,.45);
+  border-color: transparent;
+}
+.rb-service__num {
+  position: absolute; top: 28px; right: 32px;
+  font-family: var(--font-display); font-size: 14px;
+  color: var(--rb-gold); letter-spacing: .14em;
+  font-variant-numeric: tabular-nums;
+}
+.rb-service__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 30px; line-height: 1.15; color: var(--rb-burgundy); margin-bottom: 12px;
+}
+.rb-service__diag {
+  font-family: var(--font-serif); font-size: 16px;
+  line-height: 1.55; color: var(--fg-2); margin-bottom: 0;
+}
+.rb-service__diag em { color: var(--rb-burgundy); font-weight: 600; font-style: normal; }
+.rb-service__arrow { color: var(--rb-gold); padding: 0 8px; font-weight: 600; }
+.rb-service__body { display: block; }
+.rb-service__what {
+  font-family: var(--font-serif); font-size: 15px;
+  line-height: 1.6; color: var(--fg-2); margin: 16px 0 0;
+}
+.rb-service__what strong { color: var(--rb-burgundy); font-weight: 600; }
+.rb-service__phases {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--hairline);
+}
+.rb-phase__tag {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--rb-burgundy); margin-bottom: 8px;
+}
+.rb-phase__tag--gold { color: var(--rb-gold-700); }
+.rb-phase__copy { font-family: var(--font-serif); font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+
+/* ===== Projects ================================================ */
+.rb-projects { list-style: none; margin: 0; padding: 0; }
+.rb-project {
+  display: grid; grid-template-columns: 56px 220px 1fr 180px;
+  gap: 32px; align-items: center; padding: 28px 0;
+  border-top: 1px solid var(--hairline);
+}
+.rb-project:last-child { border-bottom: 1px solid var(--hairline); }
+.rb-project__index {
+  font-family: var(--font-display); font-size: 22px;
+  color: var(--rb-gold); letter-spacing: .1em; font-variant-numeric: tabular-nums;
+}
+.rb-project__tag {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--rb-burgundy); margin-bottom: 4px;
+}
+.rb-project__client {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 22px; color: var(--fg-1);
+}
+.rb-project__body {
+  font-family: var(--font-serif); font-size: 15px;
+  line-height: 1.55; color: var(--fg-2);
+}
+.rb-project__metric { text-align: right; }
+.rb-project__metric-value {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 32px; color: var(--rb-burgundy); line-height: 1; letter-spacing: -.01em;
+}
+.rb-project__metric-label {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .08em; color: var(--fg-3); text-transform: uppercase; margin-top: 6px;
+}
+
+/* ===== About =================================================== */
+.rb-about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
+.rb-about__copy .rb-section__title { margin: 12px 0 24px; }
+.rb-about__p { font-family: var(--font-serif); font-size: 17px; line-height: 1.65; color: var(--fg-2); margin: 0 0 16px; }
+.rb-about__signoff {
+  font-family: var(--font-display); font-size: 22px; color: var(--rb-burgundy);
+  margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--hairline-gold);
+}
+.rb-about__card {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 32px; box-shadow: var(--shadow-1); position: sticky; top: 100px;
+}
+.rb-about__card-photo {
+  width: 88px; height: 88px; border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px; box-shadow: 0 0 0 2px rgba(201,151,58,.5);
+}
+.rb-about__card-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+}
+.rb-about__card-name { font-family: var(--font-display); font-weight: 600; font-size: 26px; color: var(--fg-1); }
+.rb-about__card-role { font-family: var(--font-sans); font-size: 13px; color: var(--fg-3); margin-top: 4px; letter-spacing: .04em; }
+.rb-about__card-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin: 24px 0; padding: 20px 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+}
+.rb-about__card-stats strong {
+  display: block; font-family: var(--font-display); font-size: 28px;
+  color: var(--rb-burgundy); font-weight: 600;
+}
+.rb-about__card-stats span {
+  display: block; font-family: var(--font-sans); font-size: 11px;
+  color: var(--fg-3); letter-spacing: .04em; line-height: 1.4; margin-top: 4px;
+}
+.rb-about__card-quote {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 17px; line-height: 1.45; color: var(--fg-2);
+}
+
+/* ===== Footer ================================================== */
+.rb-footer { background: var(--rb-burgundy); color: var(--rb-cream); }
+.rb-footer__inner {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 48px; padding: 80px 32px 56px;
+}
+.rb-footer__brand { display: flex; flex-direction: column; gap: 12px; }
+.rb-footer__wordmark { display: flex; flex-direction: column; gap: 4px; }
+.rb-footer__rubedo { font-family: var(--font-display); font-size: 22px; letter-spacing: .22em; color: var(--rb-cream); font-weight: 500; }
+.rb-footer__advisory { font-family: var(--font-display); font-size: 11px; letter-spacing: .3em; color: var(--rb-gold); }
+.rb-footer__tag { font-family: var(--font-display); font-size: 18px; color: rgba(245,240,234,.7); margin: 8px 0 0; }
+.rb-footer__col { display: flex; flex-direction: column; gap: 10px; }
+.rb-footer__h {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--rb-gold); margin-bottom: 6px;
+}
+.rb-footer__col a { font-family: var(--font-serif); font-size: 15px; color: rgba(245,240,234,.85); transition: color var(--dur-2); }
+.rb-footer__col a:hover { color: var(--rb-cream); }
+.rb-footer__line { font-family: var(--font-serif); font-size: 15px; color: rgba(245,240,234,.85); }
+.rb-footer__col .rb-btn--inverse { margin-top: 12px; align-self: flex-start; }
+.rb-footer__base { border-top: 1px solid rgba(201,151,58,.3); padding: 20px 0; }
+.rb-footer__base-inner {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-sans); font-size: 12px;
+  color: rgba(245,240,234,.55); letter-spacing: .04em;
+}
+.rb-footer__sep { color: var(--rb-gold); }
+
+/* ===== Contact modal =========================================== */
+.rb-modal-veil {
+  position: fixed; inset: 0; background: rgba(31,19,24,.55);
+  backdrop-filter: blur(4px); z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 32px;
+}
+.rb-modal {
+  background: var(--rb-cream-100); border-radius: 10px; box-shadow: var(--shadow-3);
+  width: 100%; max-width: 520px; padding: 36px; position: relative;
+}
+.rb-modal__close { position: absolute; top: 16px; right: 16px; background: transparent; border: 0; font-size: 24px; cursor: pointer; color: var(--fg-3); }
+.rb-modal h3 { font-family: var(--font-display); font-weight: 500; font-size: 30px; margin: 8px 0 8px; color: var(--fg-1); }
+.rb-modal p { font-family: var(--font-serif); font-size: 15px; color: var(--fg-2); margin: 0 0 24px; }
+.rb-modal__field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.rb-modal__field label {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  color: var(--fg-3); letter-spacing: .12em; text-transform: uppercase;
+}
+.rb-modal__field input,
+.rb-modal__field select,
+.rb-modal__field textarea {
+  font-family: var(--font-serif); font-size: 15px;
+  background: #fff; border: 1px solid rgba(107,30,46,.2); border-radius: 6px;
+  padding: 11px 14px; color: var(--fg-1); outline: none;
+}
+.rb-modal__field input:focus,
+.rb-modal__field select:focus,
+.rb-modal__field textarea:focus {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px rgba(201,151,58,.7);
+}
+.rb-modal__success { text-align: center; padding: 24px 0; }
+.rb-modal__success-mark { display: flex; justify-content: center; margin-bottom: 16px; }
+
+/* ===== Mobile ================================================== */
+@media (max-width: 880px) {
+  .rb-header__nav { display: none; }
+  .rb-pain-grid { grid-template-columns: 1fr; }
+  .rb-services { grid-template-columns: 1fr; }
+  .rb-service__phases { grid-template-columns: 1fr; }
+  .rb-project { grid-template-columns: 1fr; gap: 12px; }
+  .rb-project__metric { text-align: left; }
+  .rb-about { grid-template-columns: 1fr; }
+  .rb-footer__inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .rb-footer__inner { grid-template-columns: 1fr; }
+  .rb-container { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+/* ----------------------------------------------------------------
+   Shared primitives
+   ---------------------------------------------------------------- */
+function Container({ children, className = "", style }) {
+  return <div className={`rb-container ${className}`} style={style}>{children}</div>;
+}
+
+function Eyebrow({ children, gold = false }) {
+  return <div className={`rb-eyebrow ${gold ? "rb-eyebrow--gold" : ""}`}>{children}</div>;
+}
+
+function Button({ variant = "primary", children, onClick, as = "button", href }) {
+  const cls = `rb-btn rb-btn--${variant}`;
+  if (as === "a") return <a className={cls} href={href} onClick={onClick}>{children}</a>;
+  return <button className={cls} onClick={onClick} type="button">{children}</button>;
+}
+
+function HexMark({ size = 36, color = "#6B1E2E", ring = "#C9973A", letter = "R" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden>
+      <circle cx="50" cy="50" r="38" fill="none" stroke={ring} strokeWidth="0.6" opacity="0.55" />
+      <polygon points="50,18 78,66 22,66" fill="none" stroke={color} strokeWidth="1.4" />
+      <polygon points="50,82 22,34 78,34" fill="none" stroke={color} strokeWidth="1.4" />
+      <text x="50" y="50" textAnchor="middle" dominantBaseline="central"
+            fontFamily="Cormorant Garamond, Georgia, serif" fontSize="28" fill={color}>{letter}</text>
+    </svg>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+function Header({ onContact }) {
+  const [scrolled, setScrolled] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <header className={`rb-header ${scrolled ? "is-scrolled" : ""}`}>
+      <Container className="rb-header__inner">
+        <a href="#top" className="rb-header__brand">
+          <HexMark size={32} />
+          <span className="rb-header__wordmark">
+            <span className="rb-header__rubedo">RUBEDO</span>
+            <span className="rb-header__advisory">ADVISORY</span>
+          </span>
+        </a>
+        <nav className="rb-header__nav">
+          <a href="#top">Home</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+        </nav>
+        <Button variant="primary" onClick={onContact}>Book intro call →</Button>
+      </Container>
+    </header>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Hero
+   ---------------------------------------------------------------- */
+function Hero({ onContact }) {
+  return (
+    <section className="rb-hero" id="top">
+      <span className="rb-hero__watermark" aria-hidden>
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#C9973A" strokeWidth="0.4" opacity="0.06" />
+          <polygon points="50,18 78,66 22,66" fill="none" stroke="#6B1E2E" strokeWidth="0.7" opacity="0.12" />
+          <polygon points="50,82 22,34 78,34" fill="none" stroke="#6B1E2E" strokeWidth="0.7" opacity="0.12" />
+          <text x="50" y="50" textAnchor="middle" dominantBaseline="central"
+                fontFamily="Cormorant Garamond, Georgia, serif" fontSize="28" fill="#6B1E2E">R</text>
+        </svg>
+      </span>
+      <Container className="rb-hero__inner">
+        <Eyebrow>Master Students · FHNW · Real Projects</Eyebrow>
+        <h1 className="rb-hero__title">
+          Fresh eyes on how you work.<br />
+          <em className="rb-hero__italic">Real help making it flow better.</em>
+        </h1>
+        <p className="rb-hero__lede">
+          We're MSc Business Information Systems students at FHNW who got tired of watching businesses run on manual work, unclear processes, and tools nobody really uses. So we started taking on real problems — for real companies — as part of our studies and beyond. No invoice shock. Just honest work.
+        </p>
+        <div className="rb-hero__cta">
+          <Button onClick={onContact}>Book intro call →</Button>
+          <Button variant="ghost" as="a" href="#services">See what we fix →</Button>
+        </div>
+        <div className="rb-hero__meta">
+          <span>Olten · FHNW</span>
+          <span className="rb-hero__sep">·</span>
+          <span>Available for student projects & collaborations</span>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Pain Points
+   ---------------------------------------------------------------- */
+const PAINS = [
+  { e: "🔥", t: "You're always putting out fires",          b: "Instead of growing your business, you spend your days solving problems that should have been solved by your team." },
+  { e: "❓", t: "Your team brings questions — not solutions", b: "Every small decision ends up on your desk. Nothing moves without your approval." },
+  { e: "⏰", t: "Too much time on manual work",              b: "Your team is doing the same repetitive tasks every day — copy-pasting, chasing people, updating spreadsheets manually." },
+  { e: "📋", t: "Meetings that lead nowhere",               b: "You spend hours in calls and workshops — but two weeks later nothing has actually changed." },
+  { e: "🤷", t: "Nobody knows who is responsible for what", b: "Things fall through the cracks. Deadlines are missed. Everyone assumed someone else was handling it." },
+  { e: "📊", t: "You have data — but no clarity",           b: "Numbers exist somewhere in Excel or a CRM — but you can't quickly see what's actually happening in your business." },
+];
+
+function PainPoints() {
+  return (
+    <section className="rb-section rb-section--sand">
+      <Container>
+        <div className="rb-section__head">
+          <Eyebrow>😤 Does this sound familiar?</Eyebrow>
+          <h2 className="rb-section__title">The signs your business is running on duct&nbsp;tape.</h2>
+        </div>
+        <div className="rb-pain-grid">
+          {PAINS.map((p, i) => (
+            <div className="rb-pain" key={i}>
+              <div className="rb-pain__emoji" aria-hidden>{p.e}</div>
+              <div className="rb-pain__title">{p.t}</div>
+              <div className="rb-pain__body">{p.b}</div>
+            </div>
+          ))}
+        </div>
+        <div className="rb-pain-closer">
+          <span className="rb-pain-closer__line">Sound familiar?</span>
+          <span className="rb-pain-closer__em">That's exactly what we fix.</span>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Services
+   ---------------------------------------------------------------- */
+const SERVICES = [
+  {
+    n: "01",
+    title: "Sales & Lead Process",
+    diag: "Leads slip through, nobody owns the follow-up",
+    fix: "We redesign it — and build the tools to run it",
+    body: "We map how leads move through your business today, find where they drop off, and redesign the whole flow from scratch if needed. Then we build the actual tools: automated follow-ups, CRM stages, handover rules. We set them up together with your team so they actually get used.",
+    you: "A redesigned sales process with working automations, implemented in your existing tools. Not just a recommendation document.",
+    m1: "We identify the biggest drop-off point and fix it right away. One working automation or one clear handover rule, set up and running.",
+    m2: "We redesign the full flow, build out the automations, document everything, and walk your team through it step by step.",
+  },
+  {
+    n: "02",
+    title: "Operations & Workflows",
+    diag: "The same manual tasks repeat, nobody is clearly in charge",
+    fix: "We redesign the process and help your team actually use it",
+    body: "We look at how your team works today, map the processes that eat the most time, and redesign them with clear roles and ownership. Then we digitalize it in the tools you already use and help your team adopt it through documentation and hands-on walkthroughs.",
+    you: "Redesigned processes with clear responsibilities, documented and implemented together with your team. Not handed over as a PDF and forgotten.",
+    m1: "We pick the one workflow causing the most friction, map it out with clear ownership, and set it up in your tools right away.",
+    m2: "We go through all priority processes, redesign them, document each one, and make sure the team is actually working the new way before we finish.",
+  },
+  {
+    n: "03",
+    title: "AI Integration",
+    diag: "Repetitive tasks eating time nobody wants to do",
+    fix: "We find where AI fits and set it up with you",
+    body: "We look at your daily operations, spot the tasks that repeat and take time, and figure out where AI tools can genuinely help. Then we set something up together — not just recommend it — so there is already a working prototype by the time we are done.",
+    you: "A working AI setup for at least one real task in your business, with clear documentation of what it does and how to keep using it.",
+    m1: "We pick one repetitive task, find the right tool, and build a simple working version together with you.",
+    m2: "We expand to other workflows that make sense, document everything clearly, and make sure it is easy for anyone on your team to pick up.",
+  },
+  {
+    n: "04",
+    title: "Digital Tools Setup",
+    diag: "Tasks and communication scattered across too many places",
+    fix: "We find what fits and set it up with you",
+    body: "We look at how your team currently tracks work and communicates, figure out where things get lost, and help you choose tools that actually fit your size and budget. Then we set them up together — configured, not just recommended.",
+    you: "A working tool setup with a simple guide your team can follow, so it does not just get installed and ignored.",
+    m1: "We pick one core tool, set it up, and get your team started on it straight away.",
+    m2: "We connect the remaining tools, help move over any existing data, and write simple guidelines so the setup stays consistent over time.",
+  },
+];
+
+function Services() {
+  return (
+    <section className="rb-section" id="services">
+      <Container>
+        <div className="rb-section__head">
+          <Eyebrow>🛠 Our Services</Eyebrow>
+          <h2 className="rb-section__title">Four wedges. One <em>rubedo</em>.</h2>
+          <p className="rb-section__lede">Each engagement starts with a Quick Win in Month 1, then a Full Implementation in Month 2+. You feel the difference before you've finished the discovery deck.</p>
+        </div>
+        <div className="rb-services">
+          {SERVICES.map((s, i) => (
+            <div key={i} className="rb-service">
+              <div className="rb-service__num">{s.n}</div>
+              <div className="rb-service__title">{s.title}</div>
+              <div className="rb-service__diag">
+                {s.diag} <span className="rb-service__arrow">→</span> <em>{s.fix}</em>
+              </div>
+              <div className="rb-service__body">
+                <p className="rb-service__what"><strong>What we do.</strong> {s.body}</p>
+                <p className="rb-service__what"><strong>You get.</strong> {s.you}</p>
+                <div className="rb-service__phases">
+                  <div className="rb-phase">
+                    <div className="rb-phase__tag">Month 1 · Quick Win</div>
+                    <div className="rb-phase__copy">{s.m1}</div>
+                  </div>
+                  <div className="rb-phase">
+                    <div className="rb-phase__tag rb-phase__tag--gold">Month 2+ · Full Implementation</div>
+                    <div className="rb-phase__copy">{s.m2}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Projects
+   ---------------------------------------------------------------- */
+const PROJECTS = [
+  { tag: "Process Redesign",        client: "Swiss Company",           body: "Redesigned client onboarding — mapped AS-IS, built TO-BE in Camunda, proposed CRM automation in Bexio.",                                                              metric: "AS-IS → TO-BE", metricLabel: "Camunda · Bexio" },
+  { tag: "Sales Transformation",    client: "WOTAN",                   body: "Rebuilt the sales cycle, KPI frameworks and incentive structures end-to-end.",                                                                                            metric: "+135%",         metricLabel: "Profitability growth" },
+  { tag: "Data Dashboard",          client: "Power BI",                body: "Built an interactive dashboard integrating 3 global datasets across 180+ countries with drill-down KPIs.",                                                               metric: "180+",           metricLabel: "Countries · 3 datasets" },
+  { tag: "AI Recruitment Automation", client: "IBM watsonx Platform",    body: "Automated end-to-end recruitment process using IBM watsonx Orchestrate — university project, reduced recruiter time dramatically while keeping human review on every hire.", metric: "5h → <30m",     metricLabel: "Per recruiter, per role" },
+  { tag: "Product Concept",         client: "LongevityOS",             body: "Designed end-to-end AI-driven health product concept including user journey, ecosystem architecture and MVP scoping.",                                                    metric: "0 → 1",          metricLabel: "Concept · Architecture · MVP" },
+];
+
+function Projects() {
+  return (
+    <section className="rb-section rb-section--sand" id="projects">
+      <Container>
+        <div className="rb-section__head">
+          <Eyebrow>💼 Our Projects</Eyebrow>
+          <h2 className="rb-section__title">Academic & real-world projects. Honest results.</h2>
+        </div>
+        <ol className="rb-projects">
+          {PROJECTS.map((p, i) => (
+            <li className="rb-project" key={i}>
+              <div className="rb-project__index">{String(i + 1).padStart(2, "0")}</div>
+              <div className="rb-project__meta">
+                <div className="rb-project__tag">{p.tag}</div>
+                <div className="rb-project__client">{p.client}</div>
+              </div>
+              <p className="rb-project__body">{p.body}</p>
+              <div className="rb-project__metric">
+                <div className="rb-project__metric-value">{p.metric}</div>
+                <div className="rb-project__metric-label">{p.metricLabel}</div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   About
+   ---------------------------------------------------------------- */
+function About() {
+  return (
+    <section className="rb-section" id="about">
+      <Container className="rb-about">
+        <div className="rb-about__copy">
+          <Eyebrow>About us</Eyebrow>
+          <h2 className="rb-section__title">Students. Real skills. No consulting theatre.</h2>
+          <p className="rb-about__p">We're MSc Business Information Systems students at FHNW. During our studies we kept working on real projects with real companies — and kept noticing the same thing: businesses running on manual work, unclear responsibilities, and tools nobody actually uses.</p>
+          <p className="rb-about__p">Not because they didn't want to change. Because they didn't have the time or the right person to make it happen. <em>That's why we started this as a student project.</em></p>
+          <p className="rb-about__p">Kateryna brings 5+ years of hands-on experience in business development and building sales teams. Together we live and breathe new tools and AI — and we'd rather spend our time solving a real problem for your business than writing another essay about one.</p>
+          <p className="rb-about__signoff"><em>We're students — which means we're motivated, affordable, and have nothing to prove except the results.</em></p>
+        </div>
+        <aside className="rb-about__card">
+          <div className="rb-about__card-photo">
+            <img src="kateryna.jpg" alt="Kateryna" />
+          </div>
+          <div className="rb-about__card-name">Kateryna</div>
+          <div className="rb-about__card-role">Founder · Strategy &amp; Operations</div>
+          <div className="rb-about__card-stats">
+            <div><strong>5+</strong><span>years building<br />sales teams</span></div>
+            <div><strong>FHNW</strong><span>MSc Business<br />Information Systems</span></div>
+          </div>
+          <div className="rb-about__card-quote">"We're students — which means we're hungry, honest, and we actually do the work."</div>
+        </aside>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+function Footer({ onContact }) {
+  return (
+    <footer className="rb-footer">
+      <Container className="rb-footer__inner">
+        <div className="rb-footer__brand">
+          <HexMark size={48} color="#F5F0EA" ring="#C9973A" />
+          <div className="rb-footer__wordmark">
+            <span className="rb-footer__rubedo">RUBEDO</span>
+            <span className="rb-footer__advisory">ADVISORY</span>
+          </div>
+          <p className="rb-footer__tag"><em>Students who actually do the work.</em></p>
+        </div>
+        <div className="rb-footer__col">
+          <div className="rb-footer__h">Services</div>
+          <a href="#services">Sales &amp; Lead Process</a>
+          <a href="#services">Operations &amp; Workflows</a>
+          <a href="#services">AI Integration</a>
+          <a href="#services">Digital Tools Setup</a>
+        </div>
+        <div className="rb-footer__col">
+          <div className="rb-footer__h">Company</div>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); onContact(); }}>Contact</a>
+        </div>
+        <div className="rb-footer__col">
+          <div className="rb-footer__h">Get in touch</div>
+          <div className="rb-footer__line">shevelieva.kateryna@gmail.com</div>
+          <div className="rb-footer__line">+41 79 602 23 48 · Kateryna</div>
+          <button className="rb-btn rb-btn--inverse" onClick={onContact}>Book intro call →</button>
+        </div>
+      </Container>
+      <div className="rb-footer__base">
+        <Container className="rb-footer__base-inner">
+          <span>© {new Date().getFullYear()} Rubedo Advisory</span>
+          <span className="rb-footer__sep">·</span>
+          <span>A student project. A real effort.</span>
+        </Container>
+      </div>
+    </footer>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Contact modal
+   ---------------------------------------------------------------- */
+function ContactModal({ open, onClose }) {
+  const [submitted, setSubmitted] = React.useState(false);
+  React.useEffect(() => { if (!open) setSubmitted(false); }, [open]);
+  if (!open) return null;
+  return (
+    <div className="rb-modal-veil" onClick={onClose}>
+      <div className="rb-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="rb-modal__close" onClick={onClose} aria-label="Close">×</button>
+        {!submitted ? (
+          <>
+            <Eyebrow>Book intro call</Eyebrow>
+            <h3>Tell us what's broken.</h3>
+            <p>30 minutes. No invoice. We're students — we'll tell you honestly what we can help with.</p>
+            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+              <div className="rb-modal__field">
+                <label>Your name</label>
+                <input required placeholder="Kateryna" />
+              </div>
+              <div className="rb-modal__field">
+                <label>Email</label>
+                <input type="email" required placeholder="you@company.com" />
+              </div>
+              <div className="rb-modal__field">
+                <label>What's the friction?</label>
+                <select defaultValue="ops">
+                  <option value="sales">Sales &amp; Lead Process</option>
+                  <option value="ops">Operations &amp; Workflows</option>
+                  <option value="ai">AI Integration</option>
+                  <option value="tools">Digital Tools Setup</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+              <div className="rb-modal__field">
+                <label>One sentence on what's broken</label>
+                <textarea rows="3" placeholder="Leads dropping somewhere between marketing and the CRM…" />
+              </div>
+              <Button>Send &amp; schedule →</Button>
+            </form>
+          </>
+        ) : (
+          <div className="rb-modal__success">
+            <div className="rb-modal__success-mark"><HexMark size={64} /></div>
+            <h3>We've got it.</h3>
+            <p>Kateryna will email you within 24 hours with two times that work this week.</p>
+            <Button variant="secondary" onClick={onClose}>Back to site</Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------
+   App root
+   ---------------------------------------------------------------- */
+function App() {
+  const [contactOpen, setContactOpen] = React.useState(false);
+  const open = () => setContactOpen(true);
+  const close = () => setContactOpen(false);
+  return (
+    <>
+      <Header onContact={open} />
+      <main>
+        <Hero onContact={open} />
+        <PainPoints />
+        <Services />
+        <Projects />
+        <About />
+      </main>
+      <Footer onContact={open} />
+      <ContactModal open={contactOpen} onClose={close} />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
