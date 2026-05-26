@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <title>Rubedo Advisory — From friction to gold.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <style>
 /* =============================================================
    Rubedo Advisory — Colors & Type
@@ -493,6 +495,36 @@ em { font-style: italic; }
 .rb-modal__success { text-align: center; padding: 24px 0; }
 .rb-modal__success-mark { display: flex; justify-content: center; margin-bottom: 16px; }
 
+/* ===== Free audit banner ======================================= */
+.rb-audit {
+  background: var(--rb-burgundy); color: var(--rb-cream);
+  padding: 72px 0;
+}
+.rb-audit__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 48px; flex-wrap: wrap;
+}
+.rb-audit__text { flex: 1; min-width: 280px; }
+.rb-audit__label {
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--rb-gold);
+  margin-bottom: 12px;
+}
+.rb-audit__title {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 500; line-height: 1.15; color: var(--rb-cream); margin: 0 0 12px;
+}
+.rb-audit__sub {
+  font-family: var(--font-serif); font-size: 16px; line-height: 1.6;
+  color: rgba(245,240,234,.75); margin: 0;
+}
+.rb-audit__cta { flex-shrink: 0; }
+.rb-btn--gold {
+  background: var(--rb-gold); color: var(--rb-burgundy-900);
+  font-weight: 700;
+}
+.rb-btn--gold:hover { background: var(--rb-gold-400); }
+
 /* ===== Mobile ================================================== */
 @media (max-width: 880px) {
   .rb-header__nav { display: none; }
@@ -551,6 +583,7 @@ function HexMark({ size = 36, color = "#6B1E2E", ring = "#C9973A", letter = "R" 
    Header
    ---------------------------------------------------------------- */
 function Header({ onContact }) {
+  const handleBook = (e) => openCalendly(e);
   const [scrolled, setScrolled] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -573,7 +606,7 @@ function Header({ onContact }) {
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
         </nav>
-        <Button variant="primary" onClick={onContact}>Book intro call →</Button>
+        <Button variant="primary" onClick={openCalendly}>Book intro call →</Button>
       </Container>
     </header>
   );
@@ -611,6 +644,39 @@ function Hero({ onContact }) {
           <span>Olten · FHNW</span>
           <span className="rb-hero__sep">·</span>
           <span>Available for student projects & collaborations</span>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* ----------------------------------------------------------------
+   Free Audit Banner
+   ---------------------------------------------------------------- */
+const CALENDLY_URL = "https://calendly.com/shevelieva-kateryna/30min";
+
+function openCalendly(e) {
+  e.preventDefault();
+  if (window.Calendly) {
+    window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+  } else {
+    window.open(CALENDLY_URL, "_blank");
+  }
+}
+
+function FreeAudit() {
+  return (
+    <section className="rb-audit">
+      <Container className="rb-audit__inner">
+        <div className="rb-audit__text">
+          <div className="rb-audit__label">✦ Безкоштовно</div>
+          <h2 className="rb-audit__title">Безкоштовний аудит вашого бізнесу</h2>
+          <p className="rb-audit__sub">30 хвилин. Ми розберемось як працює ваш бізнес зараз і скажемо що можна покращити. Без зобов'язань.</p>
+        </div>
+        <div className="rb-audit__cta">
+          <button className="rb-btn rb-btn--gold" onClick={openCalendly}>
+            Запланувати слот →
+          </button>
         </div>
       </Container>
     </section>
@@ -926,6 +992,7 @@ function App() {
       <Header onContact={open} />
       <main>
         <Hero onContact={open} />
+        <FreeAudit />
         <PainPoints />
         <Services />
         <Projects />
