@@ -461,40 +461,6 @@ em { font-style: italic; }
 }
 .rb-footer__sep { color: var(--rb-gold); }
 
-/* ===== Contact modal =========================================== */
-.rb-modal-veil {
-  position: fixed; inset: 0; background: rgba(31,19,24,.55);
-  backdrop-filter: blur(4px); z-index: 100;
-  display: flex; align-items: center; justify-content: center; padding: 32px;
-}
-.rb-modal {
-  background: var(--rb-cream-100); border-radius: 10px; box-shadow: var(--shadow-3);
-  width: 100%; max-width: 520px; padding: 36px; position: relative;
-}
-.rb-modal__close { position: absolute; top: 16px; right: 16px; background: transparent; border: 0; font-size: 24px; cursor: pointer; color: var(--fg-3); }
-.rb-modal h3 { font-family: var(--font-display); font-weight: 500; font-size: 30px; margin: 8px 0 8px; color: var(--fg-1); }
-.rb-modal p { font-family: var(--font-serif); font-size: 15px; color: var(--fg-2); margin: 0 0 24px; }
-.rb-modal__field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.rb-modal__field label {
-  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-  color: var(--fg-3); letter-spacing: .12em; text-transform: uppercase;
-}
-.rb-modal__field input,
-.rb-modal__field select,
-.rb-modal__field textarea {
-  font-family: var(--font-serif); font-size: 15px;
-  background: #fff; border: 1px solid rgba(107,30,46,.2); border-radius: 6px;
-  padding: 11px 14px; color: var(--fg-1); outline: none;
-}
-.rb-modal__field input:focus,
-.rb-modal__field select:focus,
-.rb-modal__field textarea:focus {
-  border-color: transparent;
-  box-shadow: inset 0 0 0 1px rgba(201,151,58,.7);
-}
-.rb-modal__success { text-align: center; padding: 24px 0; }
-.rb-modal__success-mark { display: flex; justify-content: center; margin-bottom: 16px; }
-
 /* ===== Free audit banner ======================================= */
 .rb-audit {
   background: var(--rb-burgundy); color: var(--rb-cream);
@@ -656,7 +622,7 @@ function Hero({ onContact }) {
 const CALENDLY_URL = "https://calendly.com/shevelieva-kateryna/30min";
 
 function openCalendly(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   if (window.Calendly) {
     window.Calendly.initPopupWidget({ url: CALENDLY_URL });
   } else {
@@ -669,13 +635,13 @@ function FreeAudit() {
     <section className="rb-audit">
       <Container className="rb-audit__inner">
         <div className="rb-audit__text">
-          <div className="rb-audit__label">✦ Безкоштовно</div>
-          <h2 className="rb-audit__title">Безкоштовний аудит вашого бізнесу</h2>
-          <p className="rb-audit__sub">30 хвилин. Ми розберемось як працює ваш бізнес зараз і скажемо що можна покращити. Без зобов'язань.</p>
+          <div className="rb-audit__label">✦ Free</div>
+          <h2 className="rb-audit__title">Free business audit</h2>
+          <p className="rb-audit__sub">60 minutes. We'll map how your business runs today and tell you honestly what can be improved. No strings attached.</p>
         </div>
         <div className="rb-audit__cta">
           <button className="rb-btn rb-btn--gold" onClick={openCalendly}>
-            Запланувати слот →
+            Book a slot →
           </button>
         </div>
       </Container>
@@ -926,80 +892,21 @@ function Footer({ onContact }) {
 }
 
 /* ----------------------------------------------------------------
-   Contact modal
-   ---------------------------------------------------------------- */
-function ContactModal({ open, onClose }) {
-  const [submitted, setSubmitted] = React.useState(false);
-  React.useEffect(() => { if (!open) setSubmitted(false); }, [open]);
-  if (!open) return null;
-  return (
-    <div className="rb-modal-veil" onClick={onClose}>
-      <div className="rb-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="rb-modal__close" onClick={onClose} aria-label="Close">×</button>
-        {!submitted ? (
-          <>
-            <Eyebrow>Book intro call</Eyebrow>
-            <h3>Tell us what's broken.</h3>
-            <p>30 minutes. No invoice. We're students — we'll tell you honestly what we can help with.</p>
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
-              <div className="rb-modal__field">
-                <label>Your name</label>
-                <input required placeholder="Kateryna" />
-              </div>
-              <div className="rb-modal__field">
-                <label>Email</label>
-                <input type="email" required placeholder="you@company.com" />
-              </div>
-              <div className="rb-modal__field">
-                <label>What's the friction?</label>
-                <select defaultValue="ops">
-                  <option value="sales">Sales &amp; Lead Process</option>
-                  <option value="ops">Operations &amp; Workflows</option>
-                  <option value="ai">AI Integration</option>
-                  <option value="tools">Digital Tools Setup</option>
-                  <option value="other">Something else</option>
-                </select>
-              </div>
-              <div className="rb-modal__field">
-                <label>One sentence on what's broken</label>
-                <textarea rows="3" placeholder="Leads dropping somewhere between marketing and the CRM…" />
-              </div>
-              <Button>Send &amp; schedule →</Button>
-            </form>
-          </>
-        ) : (
-          <div className="rb-modal__success">
-            <div className="rb-modal__success-mark"><HexMark size={64} /></div>
-            <h3>We've got it.</h3>
-            <p>Kateryna will email you within 24 hours with two times that work this week.</p>
-            <Button variant="secondary" onClick={onClose}>Back to site</Button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ----------------------------------------------------------------
    App root
    ---------------------------------------------------------------- */
 function App() {
-  const [contactOpen, setContactOpen] = React.useState(false);
-  const open = () => setContactOpen(true);
-  const close = () => setContactOpen(false);
   return (
     <>
-      <Header onContact={open} />
+      <Header onContact={openCalendly} />
       <main>
-        <Hero onContact={open} />
+        <Hero onContact={openCalendly} />
         <FreeAudit />
         <PainPoints />
         <Services />
         <Projects />
         <About />
       </main>
-      <Footer onContact={open} />
-      <ContactModal open={contactOpen} onClose={close} />
+      <Footer onContact={openCalendly} />
     </>
   );
 }
